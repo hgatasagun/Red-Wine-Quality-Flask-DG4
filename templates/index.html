@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Red Wine Quality</title>
+    <style>
+        body {
+            background-color: #800020;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 120vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            color: #800020;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #800020;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .prediction-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        img {
+            width: 30%;
+            max-height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='wine.jpg') }}" alt="Wine Image" style="width: 100%; max-height: 200px;">
+         <h1>Red Wine Quality</h1>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict') }}" method="post">
+            <input type="text" name="fixed_acidity" placeholder="Fixed Acidity" required="required" /><br>
+            <input type="text" name="volatile_acidity" placeholder="Volatile Acidity" required="required" /><br>
+            <input type="text" name="citric_acid" placeholder="Citric Acid" required="required" /><br>
+            <input type="text" name="residual_sugar" placeholder="Residual Sugar" required="required" /><br>
+            <input type="text" name="chlorides" placeholder="Chlorides" required="required" /><br>
+            <input type="text" name="free_sulfur_dioxide" placeholder="Free Sulfur Dioxide" required="required" /><br>
+            <input type="text" name="total_sulfur_dioxide" placeholder="Total Sulfur Dioxide" required="required" /><br>
+            <input type="text" name="density" placeholder="Density" required="required" /><br>
+            <input type="text" name="ph" placeholder="pH" required="required" /><br>
+            <input type="text" name="sulphates" placeholder="Sulphates" required="required" /><br>
+            <input type="text" name="alcohol" placeholder="Alcohol" required="required" /><br>
+            <button type="submit">Predict</button>
+        </form>
+        <div class="prediction-text">{{ prediction_text }}</div>
+    </div>
+</body>
+
+</html>
